@@ -1,0 +1,227 @@
+﻿@model IEnumerable<ASP.NETCoreIdentityCustom.ViewModel.BlackColorViewModel>
+
+@{
+    ViewData["Title"] = "GetMAchine";
+    Layout = "~/Views/Shared/_CustomLayout.cshtml";
+}
+
+<div class="app-content content ">
+   <div class="content-overlay"></div>
+   <div class="header-navbar-shadow"> </div>
+   <div class="content-wrapper container-xxl p-0">
+<header class="header fixed-top">
+
+<a href="#" class="logo"><img src="images/logo.png" alt=""></a>
+
+<nav >
+  <ul>
+      <li><a  href="~/PaperUseages/Index">Status Log</a></li>
+    <li><a  href="~/Customers/Index">Customers</a></li>
+    <li><a href="~/Projects/Index">Project</a></li>
+    <li><a  href="~/Tonars/Index">Toner</a></li>
+    <li><a  href="~/Machines/Index">Machine</a></li>
+    <li><a  href="~/TonerConfigs/Index">Toner Setting</a></li>
+    <li><a  href="~/User/Index">User Role</a></li>
+    <li><a  href="~/MachineData/GetMAchine">Page counter </a></li>
+  </ul>
+</nav>
+
+<div class="fas fa-bars"></div>
+
+</header>
+       
+   <div class="row" id="table-small">
+      <form asp-action="GetMAchine" method="post">
+        <div class="content-body" id="PrintTable">
+             <div style="display: flex; justify-content: center; align-items: center;">
+              <img src="~/app-assets/images/banner/photo_kk.png" alt="" srcset="" style=" display: block; margin-left: auto; margin-right: auto; width: 20%;" />
+            </div>
+            <div class="col-md-6 offset-3 mb-2">              
+                Submit Date: <input name="date" id="submitDate" type="date" class="form-control" />
+                 
+                Customer Name: <select style="background-color:beige" required class="form-control" name="CustomerId" asp-items="@(new SelectList(ViewData["CustomerId"] as List<Customer>,"CustomerId","CustomerName"))" id=CustomerList onchange="GetProjectbycustomer(event)">
+                    <option value="0">Select Customer</option>
+                </select> <br />
+                Project Name:
+                <select value="ProjectId" name="ProjectId" id="projectId" required class="form-control" onchange="GetProjectbyproject(event)">
+                    <option value="0">Select Project</option>
+                </select>
+                 @*asp-items="@(new SelectList(ViewData["ProjectId"] as List<Project>,"ProjectId","ProjectName"))"*@
+            </div>
+            <section  class="invoice-list-wrapper white_list"  style="display:none">
+                <div class="card" id="parentPdf">
+                    <div class="card-datatable table-responsive">
+                        <div  class="col-md-5 col-lg-10 offset-sm-1 offset-md-3 offset-lg-1 gx-2">
+                            <h1 class="text-center">Monthly B&W Page Counter Information</h1>
+                        </div>
+                        <table class="table table-sm table border">
+                            <thead>
+                                <tr>
+                                    <th>SN.</th>
+                                    <th>Machine SL</th>
+                                    <th>Machine Model</th>
+                                    <th>Toner Model</th>                                    
+                                    <th>Previous Counter</th>                                    
+                                    <th>Current Counter</th>                                    
+                                    <th>Total Counter</th>                                    
+                                    <th>Toner Percentage</th>                                    
+                                </tr>
+                            </thead>
+                            <tbody id=machinedata>
+                            </tbody>
+                        </table>
+                       @*<div class="container">*@
+                          @*<div class="row">*@
+                                 <div class="d-flex flex-row-reverse bd-highlight">
+                                     <div class="p-2 bd-highlight"><span><button type="button" class="btn btn-primary rounded-pill" onclick="hitfun()"><i data-feather="plus"></i></button></span></div>
+                                     <div class="p-2  bd-highlight col-md-6 col-lg-4 col-sm-12 offset-sm-1 offset-md-3 offset-lg-1 gx-2"><span><input type="number" placeholder="Calculate Total Usage" class="form-control totaluse" readonly/></span>                                    
+                                 </div>                          
+                          </div>
+                          @*</div>*@
+                          @*</div>*@
+                    </div>
+                </div>
+            </section>
+
+            <section class="invoice-list-wrapper white_list" style="display:none">
+                <div class="card">
+                    <div class="card-datatable table-responsive">
+                        <div class="col-md-5 col-lg-10 offset-sm-1 offset-md-3 offset-lg-1 gx-2">
+                            <h1 class="text-center">Toner Stock Information</h1>
+                        </div>
+                        <table class="table table-sm table border">
+                            <thead>
+                                <tr>                                   
+                                    <th>Toner Model</th> 
+                                    <th>Current Stock</th> 
+                                    <th>Current Percentage</th>                                                
+                                    <th>Total Toner</th>       
+                                </tr>
+                            </thead>
+                            <tbody id=tonerData>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>               
+            </section>
+          
+          
+           <section class="invoice-list-wrapper color-list" style="display:none">
+                    <div class="card" id="parentPdfcolor">
+                        <div class="card-datatable table-responsive">
+                            <div class="col-md-5 col-lg-10 offset-sm-1 offset-md-3 offset-lg-1 gx-2">
+                                <h1 class="text-center" style="color:red">Monthly Color Page Counter Infromation</h1>
+                            </div>
+                            <table class="invoice-list-table table-sm table border" id="myTable">
+                                <thead>
+                                    <tr><th>SN.</th>
+                                        <th>Machine SL</th>
+                                        <th>Machine Model</th>
+                                        <th>Tonar Model</th>
+                                        <th>Previous Counter</th>
+                                        <th>Current Counter</th>
+                                        <th>Total Counter</th>
+                                        <th>Toner Percentage</th>
+                                      </tr>
+                                  </thead>
+                                <tbody id=colormachinedata>
+                                </tbody>                                                                                                       
+                            </table>
+                                @*<div class="container">*@
+                            @* <div class="row">*@
+                                 <div class="d-flex flex-row-reverse bd-highlight">                                                                   
+                                     <div class="p-2 bd-highlight"></div>
+                                     <div class="p-2 bd-highlight"> <span><button type="button" class="btn btn-primary rounded-pill" onclick="hittotalfun()"><i data-feather="plus"></i></button></span></div>
+                                     <div class="p-2 bd-highlight col-md-8 col-lg-4 offset-sm-1 offset-md-3 offset-lg-1 gx-1">
+                                        
+                                         <span><input type="number" placeholder="Calculate Total Usage" class="form-control totalcoloruse" readonly/></span></div>
+                          </div>
+                          @*</div>*@
+                          @*</div>*@
+                         @*  <div >                                                               
+                             
+                          <span><input type="number" placeholder="Calculate Total Usage" class="totaluse" readonly/></span>
+                          <button type="button" class="btn btn-primary btn-sm rounded-pill" onclick="hittotalfun()"><i data-feather="plus"></i></button>
+                          
+                          </div>*@
+                        </div>
+                    </div>
+                </section>
+
+                            <section class="invoice-list-wrapper color-list" style="display:none">
+                             <div class="card">
+                               <div class="card-datatable table-responsive">
+                                  <div class="col-md-5 col-lg-10 offset-sm-1 offset-md-3 offset-lg-1 gx-2">
+                                    <h1 class="text-center"style="color:red" >Color Toner Stock Infromation</h1>
+                               </div>
+                             <table class="invoice-list-table table-sm table border">
+                                <thead>
+                                    <tr>
+                                        <th>Tonar Model</th>
+                                        <th>Current Stock</th>
+                                        <th>Current Percentage</th>
+                                        <th>Total Toner</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="colortonerData">
+                                   
+                                </tbody>
+                              
+                            </table>
+                        </div>
+                    </div>
+                </section>
+                </br>
+                </br>
+                </br>
+                 <div class="footerpage" id="footer" style="display:none; margin-right: auto; width: 80%;">
+                        <footer class="footer footer-static footer-light " style="background:white">
+                            <p class="clearfix mb-0">
+                                <div class="float-md-start d-block d-md-inline-block mt-25 col-6 " > Signature:</div>
+                                 <div  class="float-md-start d-block d-md-inline-block mt-25 col-6">Date:</div>
+
+                            </p>
+                        </footer>
+                 </div>
+
+        </div>
+        <div class="offset-5">
+              <input class="btn btn-success btn-block" type="submit" value="submit" onclick=" return confirm('You Data Submit Successful!')" />
+              @*<input type="button" value="Report" onclick="pdf_convert()" />*@
+              <button class="btn btn-primary mx-3 text-center" type="button" id="btnPrint"><span> Print</span></button>
+        </div>
+      </form>
+</div>
+</div>
+</div>
+
+<div class="position-fixed top-0 end-0 p-3" style="z-index: 11">
+    <div id="toast" class="toast hide align-items-center text-white bg-danger" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+            <div class="toast-body fw-bold fs-6">
+                <i class="bi bi-exclamation-triangle"></i>
+
+                <span> Data save successfully.</span>
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+    </div>
+</div>
+
+
+    <script>
+        $(document).ready(function() {
+            $(".wrapper--error-toast").click(function() {
+                var errorToastNode = document.getElementById('toast')
+                var errorToast = new bootstrap.Toast(errorToastNode, { delay: 3000 });
+                errorToast.show();
+            });
+        });
+    </script>
+
+
+
+
+
+
+

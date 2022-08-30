@@ -1,0 +1,92 @@
+﻿@model IEnumerable<ASP.NETCoreIdentityCustom.Models.Project>
+
+@{
+   ViewData["Title"] = "Index";
+   Layout = "~/Views/Shared/_CustomLayout.cshtml";
+}
+
+<div class="app-content content ">
+   <div class="content-overlay"></div>
+   <div class="header-navbar-shadow">
+          
+   </div>
+   <div class="content-wrapper container-xxl p-0">
+       <header class="header fixed-top">
+
+<a href="#" class="logo"><img src="images/logo.png" alt=""></a>
+
+<nav>
+  <ul>
+      <li><a  href="~/PaperUseages/Index">Status Log</a></li>
+    <li><a  href="~/Customers/Index">Customers</a></li>
+    <li><a href="~/Projects/Index">Project</a></li>
+    <li><a  href="~/Tonars/Index">Toner</a></li>
+    <li><a  href="~/Machines/Index">Machine</a></li>
+    <li><a  href="~/TonerConfigs/Index">Toner Setting</a></li>
+    <li><a  href="~/User/Index">User Role</a></li>
+    <li><a  href="~/MachineData/GetMAchine">Page counter </a></li>
+  </ul>
+</nav>
+
+<div class="fas fa-bars"></div>
+
+</header>
+         <div style="display: flex; justify-content: center; align-items: center;">
+              <img src="~/app-assets/images/banner/photo_kk.png" alt="" srcset="" style=" display: block; margin-left: auto; margin-right: auto; width: 20%;" />
+         </div>
+   <div class="row" id="table-small">
+      <div class="col-12">
+       <div class="card">
+        <div class="card-header">
+         <h4 class="card-title">Project List</h4>
+        </div>
+        <div class="card-body">
+          <p class="card-text">
+           <a asp-action="Create" class="btn btn-primary mb-1">Add New</a>
+          </p>
+        </div>
+      <div class="table-responsive">
+        <table class="table table-sm">
+          <thead>
+                        <tr>
+                           <th>Project Name</th>
+                           <th>Location</th>
+                           <th>Customer</th>
+                           <th>
+                             Action
+                           </th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        @foreach (var item in Model)
+                        {
+                           <tr>
+                              <td> @Html.DisplayFor(modelItem => item.ProjectName)</td>
+                              <td> @Html.DisplayFor(modelItem => item.Location)</td>
+                              <td> @Html.DisplayFor(modelItem => item.Customer.CustomerName)</td><td>             
+                <div class="dropdown">
+                  <button type="button" class="btn btn-sm dropdown-toggle hide-arrow py-0" data-bs-toggle="dropdown">
+                    <i data-feather="more-vertical"></i>
+                  </button>
+                  <div class="dropdown-menu dropdown-menu-end">
+                    <a class="dropdown-item" asp-action="Edit" class="btn btn-success" asp-route-id="@item.ProjectId" >
+                      <i data-feather="edit-2" class="me-50"></i>
+                      <span>Edit</span>
+                    </a>
+                    <a class="dropdown-item" asp-action="Delete" class="btn btn-danger" asp-route-id="@item.ProjectId" onclick=" return confirm('Are you sure to delete?')">
+                      <i data-feather="trash" class="me-50"></i>
+                       <span>Delete</span>
+                    </a>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>

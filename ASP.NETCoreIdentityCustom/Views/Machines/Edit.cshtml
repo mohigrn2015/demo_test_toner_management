@@ -1,0 +1,93 @@
+﻿@model ASP.NETCoreIdentityCustom.Models.Machine
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_CustomLayout.cshtml";
+}
+
+<div class="app-content content ">
+   <div class="content-overlay"></div>
+   <div class="header-navbar-shadow">
+         <div style="display: flex; justify-content: center; align-items: center; margin-left: auto; margin-right: auto;">
+         <img src="~/app-assets/images/banner/photo_kk.png" alt="" srcset="" style=" display: block; margin-left: auto; margin-right: auto; width: 20%;" />
+        </div>
+   </div>
+   <div class="content-wrapper container-xxl p-0">
+
+     <div class="col-md-6 offset-3 col-6">
+       <div class="card">
+         <div class="card-header">
+           <h4 class="card-title">Machine Infromation</h4>
+         </div>
+         <div class="card-body">
+           <form class="form form-vertical"  asp-action="Create">
+              <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+              <input type="hidden" asp-for="MachineId" />
+             <div class="row">
+               <div class="col-12">
+                  <div class="mb-1">
+                    <label class="form-label" for="first-name-icon">Machine Model</label>
+                    <div class="input-group input-group-merge">
+                       <input asp-for="MachineModel" class="form-control" placeholder="Enter Machine Modol:" />
+                       <span asp-validation-for="MachineModel" class="text-danger"></span>
+                    </div>
+                  </div>
+               </div>
+               <div class="col-12">
+                 <div class="mb-1">
+                   <label class="form-label" for="email-id-icon">Machine SL</label>
+                   <div class="input-group input-group-merge">
+                    <input asp-for="MachineSN" class="form-control" placeholder="Enter Machine Serial No:" />
+                    <span asp-validation-for="MachineSN" class="text-danger"></span>
+                   </div>
+                 </div>
+               </div>
+               <div class="col-12">
+                 <div class="mb-1">
+                   <label class="form-label" for="email-id-icon">Color Type</label>
+                   <div class="input-group input-group-merge">
+                    <input asp-for="colorType" class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                   </div>
+                 </div>
+               </div>
+               <div class="col-12">
+                 <div class="mb-1">
+                   <label class="form-label" for="email-id-icon">Select Customer</label>
+                   <div class="input-group input-group-merge">
+                     <select asp-for="Project.CustomerId" class="form-control" asp-items="@(new SelectList(ViewData["CustomerId"] as List<Customer>,"CustomerId","CustomerName"))" id=CustomerList onchange="GetProjectbycustomer(event)"></select>
+
+                   </div>
+                 </div>
+               </div>
+               <div class="col-12">
+                 <div class="mb-1">
+                   <label class="form-label" for="email-id-icon">Project Name</label>
+                   <div class="input-group input-group-merge">
+                    <select asp-for="ProjectId" class="form-control" asp-items="@(new SelectList(ViewData["ProjectId"] as List<Project>,"ProjectId","ProjectName"))" id="projectId"></select>
+                   </div>
+                 </div>
+               </div>
+               <div class="col-12">
+                    <input type="submit" value="Update" class="btn btn-success" />
+                    <a asp-action="Index"class="btn btn-secondary">Back</a>
+               </div>
+             </div>
+           </form>
+         </div>
+        </div>
+     </div>
+   </div>
+ </div>
+
+ @section Scripts {
+<script>
+  $('#flexCheckDefault').val($("#flexCheckDefault").prop('checked'));
+  $('#flexCheckDefault').click(function(event){
+      $('#flexCheckDefault').val(event.target.checked)
+    });
+</script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+
+

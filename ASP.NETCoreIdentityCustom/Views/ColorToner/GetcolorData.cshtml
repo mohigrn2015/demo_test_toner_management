@@ -1,0 +1,129 @@
+﻿@model IEnumerable<ASP.NETCoreIdentityCustom.ViewModel.ColorViewModel>
+@{
+    ViewData["Title"] = "GetcolorData";
+    Layout = "~/Views/Shared/_CustomLayout.cshtml";
+}
+
+<div class="app-content content ">
+    <div class="content-overlay"></div>
+    <div class="header-navbar-shadow">
+
+    </div>
+        <div class="content-wrapper container-xxl p-0">
+
+<header class="header fixed-top">
+
+<a href="#" class="logo"><img src="images/logo.png" alt=""></a>
+
+<nav>
+  <ul>
+    <li><a  href="~/PaperUseages/Index">Status Log</a></li>
+    <li><a  href="~/Customers/Index">Customers</a></li>
+    <li><a href="~/Projects/Index">Project</a></li>
+    <li><a  href="~/Tonars/Index">Toner</a></li>
+    <li><a  href="~/Machines/Index">Machine</a></li>
+    <li><a  href="~/TonerConfigs/Index">Toner Setting</a></li>
+
+    <li><a  href="~/MachineData/GetMAchine">B&W Page counter </a></li>
+    <li><a  href="~/ColorToner/GetcolorData">Color Page Counter</a></li>
+  </ul>
+</nav>
+
+<div class="fas fa-bars"></div>
+
+</header>
+            <div style="display: flex; justify-content: center; align-items: center;">
+              <img src="~/app-assets/images/banner/photo_kk.png" alt="" srcset="" style=" display: block; margin-left: auto; margin-right: auto; width: 20%;" />
+            </div>  
+            <div class="content-header row">
+            </div>
+             <form asp-action="GetcolorData" method="post">
+            <div class="content-body" id="PrintTable">
+
+                <div class="col-md-6 offset-3 mb-2">
+                 
+                   Current Date: <input id="submitDate" name="date" type="date" class="form-control" />
+             
+                    CustomerName:
+                    <select name="CustomerId" style="background-color:beige" class="form-control" asp-items="@(new SelectList(ViewData["CustomerId"] as List<Customer>,"CustomerId","CustomerName"))" id=CustomerList onchange="GetProjectbycustomer(event)">
+                        <option value="0">Select Customer</option>
+                    </select> <br />
+                    ProjectName:
+                    <select name="ProjectId" value="ProjectId" id="projectId" class="form-control" onchange="GetColorMachinebyproject(event)">
+                        <option value="0"></option>
+                    </select>
+                    @*asp-items="@(new SelectList(ViewData["ProjectId"] as List<Project>,"ProjectId","ProjectName"))"*@
+                </div>
+                <section class="invoice-list-wrapper">
+                    <div class="card" id="parentPdfcolor">
+                        <div class="card-datatable table-responsive">
+                            <div class="col-md-5 col-lg-10 offset-sm-1 offset-md-3 offset-lg-1 gx-2">
+                                <h1 class="text-center">Monthly Color Page Counter Infromation</h1>
+                            </div>
+                            <table class="invoice-list-table table-sm table border" id="myTable">
+                                <thead>
+                                    <tr><th>SN.</th>
+                                        <th>Machine SL</th>
+                                        <th>Machine Model</th>
+                                        <th>Tonar Model</th>
+                                        <th>Previous Counter</th>
+                                        <th>Current Counter</th>
+                                        <th>Total Counter</th>
+                                        <th>Toner Percentage</th>
+                                      </tr>
+                                  </thead>
+                                <tbody id=colormachinedata>
+                                </tbody>                                                                                                       
+                            </table>
+                                @*<div class="container">*@
+                            @* <div class="row">*@
+                                 <div class="d-flex flex-row-reverse bd-highlight">                                                                   
+                                     <div class="p-2 bd-highlight"></div>
+                                     <div class="p-2 bd-highlight"> <span><button type="button" class="btn btn-primary rounded-pill" onclick="hittotalfun()"><i data-feather="plus"></i></button></span></div>
+                                     <div class="p-2 bd-highlight col-md-8 col-lg-4 offset-sm-1 offset-md-3 offset-lg-1 gx-1">
+                                        
+                                         <span><input type="number" placeholder="Calculate Total Usage" class="form-control totaluse" readonly/></span></div>
+                          </div>
+                          @*</div>*@
+                          @*</div>*@
+                         @*  <div >                                                               
+                             
+                          <span><input type="number" placeholder="Calculate Total Usage" class="totaluse" readonly/></span>
+                          <button type="button" class="btn btn-primary btn-sm rounded-pill" onclick="hittotalfun()"><i data-feather="plus"></i></button>
+                          
+                          </div>*@
+                        </div>
+                    </div>
+                </section>
+                            <section class="invoice-list-wrapper">
+                             <div class="card">
+                               <div class="card-datatable table-responsive">
+                                  <div class="col-md-5 col-lg-10 offset-sm-1 offset-md-3 offset-lg-1 gx-2">
+                                    <h1 class="text-center">Toner Stock Infromation</h1>
+                               </div>
+                             <table class="invoice-list-table table-sm table border">
+                                <thead>
+                                    <tr>
+                                        <th>Tonar Model</th>
+                                        <th>Current Stock</th>
+                                        <th>Current Percentage</th>
+                                        <th>Total Toner</th>
+                                    </tr>
+                                </thead>
+                                <tbody id=colortonerData>
+                                   
+                                </tbody>
+                              
+                            </table>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <button type="submit" class="btn btn-success" onclick=" return confirm('You Data Submit Successful!')">Submit</button>
+            <button class="btn btn-primary mx-3 text-center" type="button" id="btnPrint"><span> Print To PDF</span></button>
+            </form>
+        </div>
+    
+
+</div>
+

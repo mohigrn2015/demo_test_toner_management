@@ -1,0 +1,60 @@
+﻿@model ASP.NETCoreIdentityCustom.Models.Machine
+
+@{
+   ViewData["Title"] = "Delete";
+   Layout = "~/Views/Shared/_CustomLayout.cshtml";
+}
+
+<div class="app-content content ">
+   <div class="content-overlay"></div>
+   <div class="header-navbar-shadow"></div>
+   <div class="content-wrapper container-xxl p-0">
+      <div class="content-header row">
+      </div>
+      <div class="content-body">
+         <section class="invoice-list-wrapper">
+            <div class="card">
+               <div class="card-datatable table-responsive p-4">
+                  <div class="col-md-5 col-lg-10 offset-sm-1 offset-md-3 offset-lg-3 gx-2">
+                     <h1>Machine Information</h1>
+                  </div>
+                  <dl class="row">
+                     <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.MachineModel)
+                     </dt>
+                     <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.MachineModel)
+                     </dd>
+                       <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.MachineSN)
+                     </dt>
+                     <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.MachineSN)
+                     </dd>
+                     <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.colorType)
+                     </dt>
+                     <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.colorType)
+                     </dd>
+                     <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Project)
+                     </dt>
+                     <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Project.ProjectId)
+                     </dd>
+                  </dl>
+                  <form asp-action="Delete">
+                     <div class="form-group" style="padding-top:1rem;">
+                        <input type="hidden" asp-for="MachineId" />
+                        <input type="submit" value="Delete" class="btn btn-danger" />
+                        <a asp-action="Index" class="btn btn-info"><i class="bi bi-reply-fill"></i></a>
+                     </div>
+                  </form>
+               </div>
+            </div>
+         </section>
+      </div>
+   </div>
+</div>
+

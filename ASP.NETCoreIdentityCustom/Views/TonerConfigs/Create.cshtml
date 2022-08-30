@@ -1,0 +1,95 @@
+﻿@using ASP.NETCoreIdentityCustom.ViewModel
+
+@model TonarViewModel
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_CustomLayout.cshtml";
+}
+<div class="app-content content ">
+    <div class="content-overlay"></div>
+    <div class="header-navbar-shadow">
+        
+            <div style="display: flex; justify-content: center; align-items: center;">
+              <img src="~/app-assets/images/banner/photo_kk.png" alt="" srcset="" style=" display: block; margin-left: auto; margin-right: auto; width: 20%;" />
+            </div>
+    </div>
+    <div class="content-wrapper container-xxl p-0">
+        <div class="content-header row">
+        </div>
+        <div class="content-body">
+            <section class="invoice-list-wrapper">
+                <div class="col-md-6 col-lg-10 offset-sm-1 offset-md-3 offset-lg-3 gx-2">
+                    <h1>Toner & Machine Setting</h1>
+                </div>
+                <form asp-action="Create" asp-controller="TonerConfigs">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="row">
+                        <div class="col-6 offset-3">
+                            <div class="col">
+                                <label class="control-label">Machine Serial No</label>
+                                <select asp-for="MachinID" class="form-control" id="cons" onkeyup="filterFunction()" onchange="GetMechineDetails(event)">
+                                    <option value="0">Select Machine Serial</option>
+                                    @foreach (var item in Model.Machines)
+                                    {
+                                        <option value="@item.MachineId">@item.MachineSN</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="col border py-2">
+                                <input id="colorType" class="form-control" readonly value="" />
+                            </div>
+                        </div>
+                        <div class="col-6 offset-3" id="colorTonar">
+                            <label class="control-label">Toner Model</label>
+                            <div class="col" style="max-height: 200px; overflow:auto;">
+                                @foreach (var item in Model.Toners.Where(e=>e.Type == true))
+                                {
+                                    <div class="form-control border">
+                                        <input class="form-check-input" name="TonarIDs" type="checkbox" value="@item.TonarId" id="flexCheckDefault" onchange="GetSelectedLimit(event)" />
+                                        <label class="form-check-label" for="flexCheckDefault">@item.TonarModel</label>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                        <div class="col-6 offset-3" id="bcTonar">
+                            <div class="col">
+                                <label class="control-label">Toner Model</label>
+                                <select name="TonarId" class="form-control">
+                                    <option value="0">Select Toner Model</option>
+                                     @foreach (var item in Model.Toners.Where(e=>e.Type == false))
+                                    {
+                                        <option value="@item.TonarId">@item.TonarModel</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-6 offset-3">
+                            <div class="col">
+                                <div class="form-group mt-2">
+                                    <input type="submit" value="Save" class="btn btn-primary" />
+                                    <a asp-action="Index"class="btn btn-secondary">Back</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </div>
+</div>
+
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+<script>
+   function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+
+
+</script>
+
+
+

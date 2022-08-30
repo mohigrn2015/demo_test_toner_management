@@ -1,0 +1,65 @@
+﻿@model ASP.NETCoreIdentityCustom.Models.Project
+
+@{
+   ViewData["Title"] = "Create";
+   Layout = "~/Views/Shared/_CustomLayout.cshtml";
+}
+
+
+
+<div class="app-content content ">
+   <div class="content-overlay"></div>
+   <div class="header-navbar-shadow">
+         <div style="display: flex; justify-content: center; align-items: center; margin-left: auto; margin-right: auto;">
+         <img src="~/app-assets/images/banner/photo_kk.png" alt="" srcset="" style=" display: block; margin-left: auto; margin-right: auto; width: 20%;" />
+        </div>
+   </div>
+   <div class="content-wrapper container-xxl p-0">
+
+     <div class="col-md-6 offset-3 col-6">
+       <div class="card">
+         <div class="card-header">
+           <h4 class="card-title">Project Infromation</h4>
+         </div>
+         <div class="card-body">
+           <form class="form form-vertical"  asp-action="Create">
+             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+             <div class="row">
+               <div class="col-12">
+                  <div class="mb-1">
+                    <label class="form-label" for="first-name-icon">Projrct Name</label>
+                    <div class="input-group input-group-merge">
+                      <input asp-for="ProjectName" class="form-control" placeholder="Enter Project Name" required>
+                      <span asp-validation-for="ProjectName" class="text-danger"></span>
+                    </div>
+                  </div>
+                  <div class="mb-1">
+                    <label class="form-label" for="first-name-icon">Projrct Location</label>
+                    <div class="input-group input-group-merge">
+                      <input asp-for="Location" class="form-control" placeholder="Enter location Name" required>
+                      <span asp-validation-for="Location" class="text-danger"></span>
+                    </div>
+                  </div>
+               </div>
+               <div class="col-12">
+                 <div class="mb-1">
+                   <label class="form-label" for="email-id-icon">Customer Name</label>
+                   <div class="input-group input-group-merge">
+                     <select asp-for="CustomerId"  class="form-control" asp-items="ViewBag.CustomerId">
+                         <option value="0">Select Customer</option>
+                     </select>
+                   </div>
+                 </div>
+               </div>
+               <div class="col-12">
+                 <input type="submit" value="Save" class="btn btn-primary" />
+                <a asp-action="Index"class="btn btn-secondary">Back</a>
+               </div>
+             </div>
+           </form>
+         </div>
+        </div>
+     </div>
+   </div>
+ </div>
+

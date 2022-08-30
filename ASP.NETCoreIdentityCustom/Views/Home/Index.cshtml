@@ -1,0 +1,514 @@
+﻿@{
+    ViewData["Title"] = "Home";
+     Layout = "~/Views/Shared/_CustomLayout.cshtml";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- magnific popup css link  -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
+
+  <!-- font awesome file link  -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+  <!-- bootstrap file link  -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css">
+
+  <!-- custom css file link  -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <title>Responsive Architechture and Interior Design Website Tutorial</title>
+
+  <style>
+      *{
+	padding: 0;
+	margin: 0;
+}
+.wrapper{
+	/*background:width: 100%;*/
+    height: 100vh;
+    background: #0f8a9d;
+    background: linear-gradient(57deg, #00C6A7 , #1E4D92 ); 
+    clip-path: polygon(0% 0%, 100% 0%, 100% 80%, 0% 100%);;
+	background-size: cover;
+	height: 100vh;
+}
+.navbar{
+	position:absolute;
+	height: 70px;
+	width: 100%;
+	top: 0;
+	right: 0;
+	background: rgba(0,0,0,0.4);
+}
+
+.navbar ul{
+	float: right;
+	margin-right: 5px;
+    left: 20%;
+}
+.navbar ul li{
+	list-style: none;
+	margin: 0 5px;
+	display: inline-block;
+	line-height: 60px;
+}
+.navbar ul li a{
+	font-size: 15px;
+	font-family: 'Roboto', sans-serif;
+	color: white;
+	padding: 5px 30px;
+	text-decoration: none;
+	transition: .4s;
+}
+.navbar ul li a.active,
+.navbar ul li a:hover{
+	background: red;
+	border-radius: 2px;
+}
+.wrapper .center{
+	position: absolute;
+	left: 50%;
+	top: 55%;
+	transform: translate(-50%, -50%);
+	font-family: sans-serif;
+	user-select: none;
+}
+.center h1{
+	color: white;
+	font-size: 70px;
+	width: 900px;
+	font-weight: bold;
+	text-align: center;
+}
+.center h3{
+	color:yellow;
+	font-size: 50px;
+	font-weight: bold;
+	margin-top: 10px;
+	width: 885px;
+	text-align: center;
+}
+.center .buttons{
+	margin: 35px 280px;
+}
+.buttons button{
+	height: 50px;
+	width: 150px;
+	font-size: 18px;
+	font-weight: 600;
+	color: #ffb3b3;
+	background: red;
+	outline: none;
+	cursor: pointer;
+	border: 1px solid #cc0000;
+	border-radius: 25px;
+	transition: .4s;
+}
+.buttons .btn2{
+	margin-left: 25px;
+}
+.buttons button:hover{
+	background: #cc0000;
+}
+  </style>
+
+</head>
+
+
+<body>
+   
+   @*<div class="content-overlay"></div>*@
+   
+
+
+<div class="app-content content ">
+   <div class="content-overlay"></div>           
+   <div class="wrapper container-xxl p-1">
+<header class="header fixed-top"style="background-color:darkcyan">
+
+<a href="#" class="logo"><img src="images/logo.png" alt=""></a>
+
+<nav  >
+  <ul>
+      <li><a  href="~/PaperUseages/Index">Status Log</a></li>
+    <li><a  href="~/Customers/Index">Customers</a></li>
+    <li><a href="~/Projects/Index">Project</a></li>
+    <li><a  href="~/Tonars/Index">Toner</a></li>
+    <li><a  href="~/Machines/Index">Machine</a></li>
+    <li><a  href="~/TonerConfigs/Index">Toner Setting</a></li>
+    <li><a  href="~/User/Index">User Role</a></li>
+    <li><a  href="~/MachineData/GetMAchine">Page counter </a></li>
+  </ul>
+</nav>
+
+<div class="fas fa-bars"></div>
+
+</header>
+			<div class="center">
+			<h1>Welcome To Toner Management System</h1>
+			<h3 >Create Something New</h3>
+			<div class="buttons">
+			<a  href="~/MachineData/GetMAchine" class="btn btn-danger" >Page counter</a>||
+			<a  href="~/User/Index" class="btn btn-danger" >User Role</a>
+		</div>
+		</div>
+        </div>
+        </div></div>
+</body>
+</html>
+
+@*
+<body>
+  <div class="app-content content ">
+   <div class="content-overlay"></div>
+   <div class="header-navbar-shadow">
+       
+   
+   </div>
+
+
+   <div class="content-wrapper container-xxl p-0">
+       
+<header class="header fixed-top">
+
+<a href="#" class="logo"><img src="images/logo.png" alt=""></a>
+
+<nav >
+  <ul>
+      <li><a  href="~/PaperUseages/Index">Status Log</a></li>
+    <li><a  href="~/Customers/Index">Customers</a></li>
+    <li><a href="~/Projects/Index">Project</a></li>
+    <li><a  href="~/Tonars/Index">Toner</a></li>
+    <li><a  href="~/Machines/Index">Machine</a></li>
+    <li><a  href="~/TonerConfigs/Index">Toner Setting</a></li>
+    <li><a  href="~/User/Index">User Role</a></li>
+    <li><a  href="~/MachineData/GetMAchine">Page counter </a></li>
+  </ul>
+</nav>
+
+<div class="fas fa-bars"></div>
+
+</header>
+
+<section id="home" class="home container-fluid p-0">
+
+
+<div class="row hero"style="min-height:60vh;background-color:cadetblue;background-size: cover;background-position: center;display: flex; align-items: center;">
+   
+  <div class="col pl-3 ml-sm-5 p-0">
+    <h1 class="text1">Innovation Explored</h1>
+    <h3 class="text2">A Leading Software Development Company Fostering Innovation</h3>
+  </div>
+</div>
+
+<div class="counting">
+
+<div class="box">
+    <div class="fas fa-hands-helping fa-3x"> </div>
+  <h1 class="count" data-count="12">12+</h1>
+  <h3>Tech Partners</h3>
+</div>
+
+<div class="box">
+    <div class="fas fa-business-time fa-3x" ></div>
+  <h1 class="count" data-count="8">8+</h1>
+  <h3>Years of Experience</h3>
+</div>
+
+<div class="box">
+    <div class="fas fa-check-circle fa-3x"></div>
+  <h1 class="count" data-count="50">50+</h1>
+  <h3>Project Completed</h3>
+</div>
+
+<div class="box">
+    <div class="fas fa-male fa-4x"></div>
+  <h1 class="count" data-count="500">500+</h1>
+  <h3>Employee</h3>
+</div>
+
+</div>
+
+</section>
+
+<!-- home section ends -->
+
+
+<!-- about section starts  -->
+
+<section id="about" class="about container">
+
+<h1 class="heading">about us</h1>
+
+<div class="row align-items-center">
+
+  <div class="col-md-6 image">
+    <img src="~/uploads/55-Years-Logo-.png" width="90%" alt="">
+  </div>
+
+  <div class="col-md-6 info">
+    <h2>the best software artificer. </h2>
+    <p>Excel Technologies Ltd. is a leading ICT company in Bangladesh that has established a strong foothold in this competitive market. Since the inception in the year 1999, the company is trying in the most pragmatic manner to provide excellence in products and services to its customers that suits their interest perfectly.</p>
+    <div class="icons">
+      <a href="https://www.facebook.com/ExcelTechnologiesLtd/" class="fab fa-facebook-f"></a>
+      <a href="https://www.linkedin.com/company/excel-technologies-ltd/" class="fab fa-linkedin"></a>
+     <a href="https://www.facebook.com/ExcelTechnologiesLtd/" class="fab fa-instagram"></a>
+      <a href="https://www.youtube.com/channel/UCGXxmjqvOfRrA_qFsWr_OWg" class="fab fa-youtube "></a>
+    </div>
+  </div>
+
+</div>
+
+</section>
+
+<!-- about section ends -->
+
+<!-- service section starts  -->
+
+<section id="service" class="service">
+
+<h1 class="heading">our services</h1>
+
+<div class="box-container mx-auto">
+
+  <div class="box">
+    <div class=" fas fa-lightbulb"> </div>
+    <p>Bringing innovative technologies for better life.</p>
+  </div>
+
+  <div class="box">
+    <div class="fas fa-tools"></div>
+    <p> Providing best security surveillance solutions.</p>
+  </div>
+
+  <div class="box">
+    <div class="fas fa-industry"></div>
+    <p>Distributing products from renowned manufactures. </p>
+  </div>
+
+  <div class="box">
+    <div class="fas fa-hands-helping"></div>
+    <p> Helping clients to secure increased profit margin. </p>
+  </div>
+
+</div>
+
+</section>
+
+<!-- service section ends -->
+
+<!-- project section starts   -->
+
+<section id="project" class="project">
+
+  <div class="heading">our projects</div>
+  
+  <div class="box-container mx-auto">
+  
+  <div class="box">
+    <a href="images/img1.jpg" title="house">
+      <img src="~/uploads/Printing-Document-Solution.jpg" alt="">
+    </a>
+  </div>
+  
+  <div class="box">
+    <a href="images/img2.jpg" title="hall">
+      <img src="~/uploads/Security-Survillence-4.png" alt="">
+    </a>
+  </div>
+  
+  <div class="box">
+    <a href="images/img3.jpg" title="pole">
+      <img src="~/uploads/Wi-Fi-Networking.jpg" alt="">
+    </a>
+  </div>
+  
+  <div class="box">
+    <a href="images/img4.jpg" title="kitchen">
+      <img src="~/uploads/IOT-Unified-Communication (1).jpg" alt="">
+    </a>
+  </div>
+  
+  <div class="box">
+    <a href="images/img5.jpg" title="bath">
+      <img src="~/uploads/Peripherals.png" alt="">
+    </a>
+  </div>
+  
+  <div class="box">
+    <a href="images/img6.jpg" title="toilet">
+      <img src="~/uploads//Sound-System.png" alt="">
+    </a>
+  </div>
+  
+  </div>
+  
+  </section>
+
+<!-- project section ends -->
+
+<!-- contact section starts  -->
+
+<section id="contact" class="contact">
+
+<h1 class="heading">contact us</h1>
+
+<div class="contact-box-container mx-auto">
+
+<div class="contact-box">
+  <i class="fas fa-map-marker-alt"></i>
+  <h3>Banani, Dhaka - 1207</h3>
+</div>
+
+<div class="contact-box">
+  <i class="fas fa-envelope"></i>
+  <h3>excelbd@gmEail.com</h3>
+</div>
+
+<div class="contact-box">
+  <i class="fas fa-phone"></i>
+  <h3>+8809606999645</h3>
+</div>
+
+</div>
+
+<div class="form-container mx-auto">
+
+<form action="">
+
+  <div class="inputBox">
+    <input type="text" placeholder="first name">
+    <input type="text" placeholder="last name">
+  </div>
+  <input type="email" placeholder="e-mail">
+  <textarea name="" id="" cols="30" rows="10" placeholder="message"></textarea>
+  <input type="submit" value="send">
+
+</form>
+
+</div>
+
+
+</section>
+
+<!-- contact section ends -->
+
+<!-- footer section starts  -->
+
+<section class="container-fluid footer">
+
+<div class="row">
+
+<div class="col-md-3">
+  <h2><img src="images/logo.png" alt=""></h2>
+  <p>Excel Technologies Ltd. is a leading ICT company in Bangladesh that has established a strong foothold in this competitive market.</p>
+</div>
+
+<div class="col-md-3">
+  <h2>our location</h2>
+  <div class="list">
+    <a href="#">Dhanmondi-2</a>
+    <a href="#">Banani-11</a>
+    <a href="#">Elephent Road </a>
+    <a href="#">Bari Dhara</a>
+  </div>
+</div>
+
+<div class="col-md-3">
+  <h2>follow us</h2>
+  <div class="list">
+    <a href="https://www.facebook.com/ExcelTechnologiesLtd/">facebook</a>
+    <a href="https://www.linkedin.com/company/excel-technologies-ltd/">linkedin</a>
+    <a href="https://www.facebook.com/ExcelTechnologiesLtd/">instagram</a>
+    <a href="https://www.youtube.com/channel/UCGXxmjqvOfRrA_qFsWr_OWg">youtube</a>
+  </div>
+</div>
+
+<div class="col-md-3 text-center text-md-left letter">
+  <h2>newsletter</h2>
+  <p>For more information</p>
+  <input type="email" placeholder="enter your email">
+  <input type="submit" placeholder="subscribe">
+</div>
+
+</div>
+
+<h1 class="credit">created by <span>excelbd@gmail.com</span> | all rights reserved. </h1>
+
+</section>
+</div>
+
+</div>
+<!-- footer section ends -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- jquery file link  -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- magnific popup link  -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+
+<!-- main/custom javascript file link  -->
+<script src="js/main.js"></script>
+
+</body>
+</html>
+
+
+
+<script>
+  $(document).ready(function(){
+
+$('.fa-bars').click(function(){
+  $(this).toggleClass('fa-times');
+  $('nav').toggleClass('nav-toggle');
+});
+
+$(window).on('scroll load',function(){
+  $('.fa-bars').removeClass('fa-times');
+  $('nav').removeClass('nav-toggle');
+});
+
+$('.count').each(function() {
+  var $this = $(this),
+      countTo = $this.attr('data-count');
+  $({ countNum: $this.text()}).animate({
+    countNum: countTo
+  },
+  {
+    duration: 5000,
+    step: function() {
+      $this.text(Math.floor(this.countNum));
+    },
+    complete: function() {
+      $this.text(this.countNum + '+');
+    }
+  });
+});
+
+$('.project').magnificPopup({
+  delegate:'a',
+  type:'image',
+  gallery:{
+    enabled:true
+  }
+});
+
+});
+</script>*@
